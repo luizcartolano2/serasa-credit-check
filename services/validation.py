@@ -1,5 +1,17 @@
 import re
 
+from utils.logger import logger
+
+
+def log_validation(doc_type: str, value: str, valid: bool):
+    masked = "****" + value[-4:] if len(value) > 4 else value
+    logger.info({
+        "event": "validate_document",
+        "type": doc_type,
+        "input": masked,
+        "valid": valid
+    })
+
 
 def only_digits(value: str) -> str:
     """
@@ -29,7 +41,11 @@ def validate_cpf(cpf: str) -> bool:
     sum2 = sum(int(cpf[i]) * (11 - i) for i in range(10))
     check2 = (sum2 * 10 % 11) % 10
 
-    return check1 == int(cpf[9]) and check2 == int(cpf[10])
+    is_valid = check1 == int(cpf[9]) and check2 == int(cpf[10])
+
+    log_validation("CPF", cpf, is_valid)
+
+    return is_valid
 
 
 def validate_cnpj(cnpj: str) -> bool:
@@ -56,4 +72,7 @@ def validate_cnpj(cnpj: str) -> bool:
     check2 = 11 - (sum2 % 11)
     check2 = 0 if check2 >= 10 else check2
 
-    return check1 == int(cnpj[12]) and check2 == int(cnpj[13])
+    is_valid = check1 == int(cnpj[12]) and check2 == int(cnpj[13])
+    log_validation("CNPJ", cnpj, is_valid)
+
+    return is_valid

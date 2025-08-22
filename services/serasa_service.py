@@ -6,6 +6,7 @@ import requests
 from cachetools import TTLCache
 
 from services.validation import validate_cpf, validate_cnpj
+from utils.logger import logger
 
 
 class SerasaService:
@@ -57,6 +58,13 @@ class SerasaService:
 
         self.token_cache["token"] = token
         self.token_cache["expires_at"] = time.time() + expires_in - 5
+
+        logger.info({
+            "event": "auth_success",
+            "token_set": True,
+            "expires_at": self.token_cache["expires_at"]
+        })
+
         return token
 
     def __request_with_retry(self, url: str, document_id: str) -> requests.Response:
@@ -66,14 +74,24 @@ class SerasaService:
         :param document_id: a string representing the document ID (CPF or CNPJ)
         :return: a requests.Response object
         """
+        logger.info({"event": "request_start", "document_id": document_id, "url": url})
+
         token = self.__get_token()
         headers = {"Authorization": f"Bearer {token}", "X-Document-Id": document_id}
         resp = requests.get(url, headers=headers)
 
         if resp.status_code == 401:
+            logger.warning({"event": "token_expired", "message": "Retrying request with new token"})
+
             token = self.__get_token(force=True)
             headers["Authorization"] = f"Bearer {token}"
             resp = requests.get(url, headers=headers)
+
+        logger.info({
+            "event": "request_end",
+            "document_id": document_id,
+            "status_code": resp.status_code
+        })
 
         return resp
 
@@ -83,24 +101,33 @@ class SerasaService:
         :param cpf: a string representing the CPF number, which may contain non-digit characters
         :return: a dictionary with the result of the consultation
         """
+        logger.info({"event": "validate_cpf", "cpf": cpf})
+
         if not validate_cpf(cpf):
+            logger.error({"event": "invalid_cpf", "cpf": cpf})
             return {"error": "Invalid CPF."}, 400
 
         if cpf in self.cache:
+            logger.info({"event": "cache_hit", "document_id": cpf})
             return {"success": True, "data": self.cache[cpf], "cached": True}, 200
 
+        logger.info({"event": "auth_request", "message": "Requesting new token"})
         resp = self.__request_with_retry(
             f"{self.mock_url}/credit-services/person-information-report/v1/creditreport?reportName=RELATORIO_BASICO_PF_PME",
             cpf,
         )
 
         if resp.status_code == 404:
+            logger.error({"event": "document_not_found", "document_id": cpf})
             return {"error": "Document not found"}, 404
         if resp.status_code != 200:
+            logger.error({"event": "service_error", "status_code": resp.status_code})
             return {"error": "Error in Serasa service. Please try again later."}, 503
 
         data = resp.json()
         self.cache[cpf] = data
+
+        logger.info({"event": "consult_success", "document_id": cpf})
         return {"success": True, "data": data, "cached": False}, 200
 
     def consult_cnpj(self, cnpj: str) -> [dict, int]:
@@ -109,10 +136,13 @@ class SerasaService:
         :param cnpj: a string representing the CNPJ number, which may contain non-digit characters
         :return: a dictionary with the result of the consultation
         """
+        logger.info({"event": "validate_cnpj", "cnpj": cnpj})
         if not validate_cnpj(cnpj):
+            logger.error({"event": "invalid_cnpj", "cnpj": cnpj})
             return {"error": "Invalid CNPJ."}, 400
 
         if cnpj in self.cache:
+            logger.info({"event": "cache_hit", "document_id": cnpj})
             return {"success": True, "data": self.cache[cnpj], "cached": True}, 200
 
         resp = self.__request_with_retry(
@@ -121,10 +151,13 @@ class SerasaService:
         )
 
         if resp.status_code == 404:
+            logger.error({"event": "document_not_found", "document_id": cnpj})
             return {"error": "Document not found"}, 404
         if resp.status_code != 200:
+            logger.error({"event": "service_error", "status_code": resp.status_code})
             return {"error": "Error in Serasa service. Please try again later."}, 503
 
         data = resp.json()
         self.cache[cnpj] = data
+        logger.info({"event": "consult_success", "document_id": cnpj})
         return {"success": True, "data": data, "cached": False}, 200

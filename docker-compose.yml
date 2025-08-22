@@ -1,0 +1,18 @@
+version: "3.9"
+
+services:
+  serasa-api:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MOCK_URL=http://mock-serasa:3006
+    depends_on:
+      - mock-serasa
+
+  mock-serasa:
+    image: mock-serasa:latest
+    build:
+      context: ./mock-serasa
+    ports:
+      - "3006:3006"

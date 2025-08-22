@@ -1,0 +1,334 @@
+{
+    "reports": [
+        {
+            "reportName": "RELATORIO_BASICO_PJ_PME",
+            "registration": {
+                "companyDocument": "06134846000109",
+                "companyName": "TRANSPORTADORA PRINT LTDA",
+                "foundationDate": "2004-03-02",
+                "statusRegistration": "SITUACAO DO CNPJ EM 10/05/2025: ATIVA",
+                "address": {
+                    "city": "CAJAMAR",
+                    "state": "SP"
+                }
+            },
+            "negativeData": {
+                "pefin": {
+                    "pefinResponse": [
+                        {
+                            "occurrenceDate": "2025-06-25",
+                            "legalNatureId": "DP",
+                            "legalNature": "DUPLICATA",
+                            "contractId": "0173936704420124",
+                            "creditorName": "CPX DISTRIBUIDORA",
+                            "amount": 25737.73,
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541911898"
+                        },
+                        {
+                            "occurrenceDate": "2025-06-21",
+                            "legalNatureId": "DP",
+                            "legalNature": "DUPLICATA",
+                            "contractId": "0027379104424024",
+                            "creditorName": "CPX DISTRIBUIDORA",
+                            "amount": 61285.03,
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541911889"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-26",
+                            "legalNatureId": "DP",
+                            "legalNature": "DUPLICATA",
+                            "contractId": "0173936703420124",
+                            "creditorName": "CPX DISTRIBUIDORA",
+                            "amount": 25737.73,
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929059"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-22",
+                            "legalNatureId": "DP",
+                            "legalNature": "DUPLICATA",
+                            "contractId": "0027379103424024",
+                            "creditorName": "CPX DISTRIBUIDORA",
+                            "amount": 61285.03,
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929062"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-10",
+                            "legalNatureId": "DP",
+                            "legalNature": "DUPLICATA",
+                            "contractId": "0167243105420124",
+                            "creditorName": "CPX DISTRIBUIDORA",
+                            "amount": 8256.03,
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929060"
+                        }
+                    ],
+                    "summary": {
+                        "firstOccurrence": "2022-09-15",
+                        "lastOccurrence": "2025-06-25",
+                        "count": 54,
+                        "balance": 2243116.42
+                    }
+                },
+                "refin": {
+                    "summary": {
+                        "count": 0,
+                        "balance": 0.0
+                    }
+                },
+                "collectionRecords": {
+                    "collectionRecordsResponse": [
+                        {
+                            "occurrenceDate": "2025-06-17",
+                            "legalNatureId": "DM",
+                            "legalNature": "DUPLIC DE VENDA MERCANTIL",
+                            "contractId": "10900039735",
+                            "creditorName": "PESADOS AUTO PARTS",
+                            "amount": 2924.6,
+                            "city": "",
+                            "federalUnit": "",
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929040"
+                        },
+                        {
+                            "occurrenceDate": "2025-06-17",
+                            "legalNatureId": "DM",
+                            "legalNature": "DUPLIC DE VENDA MERCANTIL",
+                            "contractId": "10900039750",
+                            "creditorName": "PESADOS AUTO PARTS",
+                            "amount": 3351.66,
+                            "city": "",
+                            "federalUnit": "",
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929037"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-17",
+                            "legalNatureId": "DM",
+                            "legalNature": "DUPLIC DE VENDA MERCANTIL",
+                            "contractId": "10900039909",
+                            "creditorName": "PESADOS AUTO PARTS",
+                            "amount": 490.0,
+                            "city": "",
+                            "federalUnit": "",
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929056"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-17",
+                            "legalNatureId": "DM",
+                            "legalNature": "DUPLIC DE VENDA MERCANTIL",
+                            "contractId": "10900039734",
+                            "creditorName": "PESADOS AUTO PARTS",
+                            "amount": 2924.6,
+                            "city": "",
+                            "federalUnit": "",
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929054"
+                        },
+                        {
+                            "occurrenceDate": "2025-05-17",
+                            "legalNatureId": "DM",
+                            "legalNature": "DUPLIC DE VENDA MERCANTIL",
+                            "contractId": "10900039260",
+                            "creditorName": "PESADOS AUTO PARTS",
+                            "amount": 1487.66,
+                            "city": "",
+                            "federalUnit": "",
+                            "principal": true,
+                            "dispute": {
+                                "disputeIndicativeFlag": false
+                            },
+                            "cadus": "C541929052"
+                        }
+                    ],
+                    "summary": {
+                        "firstOccurrence": "2020-12-01",
+                        "lastOccurrence": "2025-06-17",
+                        "count": 80,
+                        "balance": 129059.18
+                    }
+                },
+                "check": {
+                    "summary": {
+                        "count": 0,
+                        "balance": 0.0
+                    }
+                },
+                "notary": {
+                    "notaryResponse": [
+                        {
+                            "occurrenceDate": "2025-07-17",
+                            "amount": 1890.0,
+                            "officeNumber": "UN",
+                            "city": "JUNDIAI",
+                            "federalUnit": "SP",
+                            "cadus": "A440415474"
+                        },
+                        {
+                            "occurrenceDate": "2025-07-17",
+                            "amount": 1310.18,
+                            "officeNumber": "UN",
+                            "city": "JUNDIAI",
+                            "federalUnit": "SP",
+                            "cadus": "A440287631"
+                        },
+                        {
+                            "occurrenceDate": "2025-07-17",
+                            "amount": 1319.2,
+                            "officeNumber": "UN",
+                            "city": "JUNDIAI",
+                            "federalUnit": "SP",
+                            "cadus": "A440287630"
+                        },
+                        {
+                            "occurrenceDate": "2025-07-17",
+                            "amount": 7825.0,
+                            "officeNumber": "UN",
+                            "city": "JUNDIAI",
+                            "federalUnit": "SP",
+                            "cadus": "A440140864"
+                        },
+                        {
+                            "occurrenceDate": "2025-07-17",
+                            "amount": 7750.0,
+                            "officeNumber": "UN",
+                            "city": "JUNDIAI",
+                            "federalUnit": "SP",
+                            "cadus": "A440140863"
+                        }
+                    ],
+                    "summary": {
+                        "firstOccurrence": "2022-03-16",
+                        "lastOccurrence": "2025-07-17",
+                        "count": 770,
+                        "balance": 7283420.96
+                    }
+                }
+            },
+            "facts": {
+                "inquiryCompanyResponse": {
+                    "results": [
+                        {
+                            "occurrenceDate": "2025-07-31",
+                            "companyName": "G10 TRANSPORTES S.A.",
+                            "companyDocumentId": "07569161000140",
+                            "companyAlias": "G10 - TRANSPORTES",
+                            "daysQuantity": 1
+                        },
+                        {
+                            "occurrenceDate": "2025-07-30",
+                            "companyName": "SEM PARAR INSTITUICAO DE PAGAMENTO LTDA",
+                            "companyDocumentId": "04088208000165",
+                            "companyAlias": "",
+                            "daysQuantity": 2
+                        },
+                        {
+                            "occurrenceDate": "2025-07-30",
+                            "companyName": "RAMA USINAGEM LTDA - ME",
+                            "companyDocumentId": "07848119000168",
+                            "companyAlias": "",
+                            "daysQuantity": 1
+                        },
+                        {
+                            "occurrenceDate": "2025-07-29",
+                            "companyName": "BANCO DO BRASIL SA",
+                            "companyDocumentId": "00000000000191",
+                            "companyAlias": "DIRECAO GERAL",
+                            "daysQuantity": 1
+                        },
+                        {
+                            "occurrenceDate": "2025-07-29",
+                            "companyName": "ALIANCA SECURITIZADORA S.A.",
+                            "companyDocumentId": "19603334000188",
+                            "companyAlias": "SIVE SECURITIZADORA S.A.",
+                            "daysQuantity": 1
+                        }
+                    ],
+                    "quantity": {
+                        "actual": 0,
+                        "bankActual": 0,
+                        "historical": [
+                            {
+                                "inquiryDate": "2025-07",
+                                "occurrences": 43,
+                                "bankOccurrences": 12
+                            }
+                        ]
+                    }
+                }
+            },
+            "score": {
+                "score": 200,
+                "scoreModel": "HPJ8",
+                "defaultRate": "10000",
+                "message": "DEFAULT - CESTA DE EVENTOS RELEVANTES",
+                "billing": true
+            },
+            "partner": {
+                "PartnerResponse": {
+                    "results": [
+                        {
+                            "documentId": "14784167000103",
+                            "name": "U CAN ADMINISTRADORA DE BENS S/A",
+                            "participationPercentage": 100.0,
+                            "inconsistent": false,
+                            "hasNegative": true
+                        },
+                        {
+                            "documentId": "28664053820",
+                            "name": "SERGIO DOS SANTOS BEZERRA",
+                            "participationPercentage": 0.0,
+                            "inconsistent": false,
+                            "hasNegative": false
+                        }
+                    ]
+                }
+            },
+            "director": {
+                "DirectorResponse": {
+                    "results": [
+                        {
+                            "documentType": "CPF",
+                            "documentId": "28664053820",
+                            "name": "SERGIO DOS SANTOS BEZERRA",
+                            "role": "ADMINISTR",
+                            "hasNegative": false
+                        }
+                    ]
+                }
+            },
+            "negativeSummary": {}
+        }
+    ]
+}

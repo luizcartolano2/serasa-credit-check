@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  mock-serasa:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mock-serasa-server
+    ports:
+      - "3009:3009"
+    environment:
+      - NODE_ENV=production
+      - PORT=3006
+      - JWT_SECRET=${JWT_SECRET:-your-secret-key-here}
+      - TOKEN_EXPIRY=3600
+      - RATE_LIMIT_WINDOW_MS=900000
+      - RATE_LIMIT_MAX_REQUESTS=100
+      - LOG_LEVEL=info
+      - LOG_DIR=/app/logs
+      - MIN_DELAY=2000
+      - MAX_DELAY=60000
+    volumes:
+      - ./logs:/app/logs
+      - ./payload-pf.json:/app/payload-pf.json:ro
+      - ./payload-pj.json:/app/payload-pj.json:ro
+    restart: unless-stopped
+    networks:
+      - mock-serasa-network
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3006/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+networks:
+  mock-serasa-network:
+    driver: bridge

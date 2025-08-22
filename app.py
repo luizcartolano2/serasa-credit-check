@@ -1,15 +1,35 @@
-from flask import Flask, jsonify, Response
+import time
+
+from flask import Flask, jsonify, Response, g, request
 from services.serasa_service import SerasaService
+from utils.logger import get_correlation_id, logger
+from utils.metrics import track_metrics
 from utils.rate_limiter import RateLimiter
 
 app = Flask(__name__)
 serasa_service = SerasaService()
 
 rate_limiter = RateLimiter(limit=10, period=60)
+metrics_data = {"last_request_duration": 0}
+
+
+@app.before_request
+def start_request():
+    g.correlation_id = get_correlation_id()
+    g.start_time = time.time()
+    logger.info(f"Incoming request: {request.method} {request.path}")
+
+
+@app.after_request
+def end_request(response):
+    duration = time.time() - g.start_time
+    metrics_data["last_request_duration"] = duration
+    return response
 
 
 @app.route("/api/v1/consulta/cpf/<cpf>")
 @rate_limiter.decorator
+@track_metrics
 def consult_cpf(cpf: str) -> Response:
     """
     Consults the Serasa mock service for a person's credit report by CPF.
@@ -29,6 +49,7 @@ def consult_cpf(cpf: str) -> Response:
 
 @app.route("/api/v1/consulta/cnpj/<cnpj>")
 @rate_limiter.decorator
+@track_metrics
 def consult_cnpj(cnpj: str) -> Response:
     """
     Consults the Serasa mock service for a company's credit report by CNPJ.
@@ -44,6 +65,15 @@ def consult_cnpj(cnpj: str) -> Response:
         response.headers["X-Cache-Hit"] = str(response_data["cached"]).lower()
 
     return response
+
+
+@app.route("/metrics")
+def metrics() -> Response:
+    uptime = time.time() - app.config.get("START_TIME", time.time())
+    return jsonify({
+        "uptime": uptime,
+        "last_request_duration": metrics_data["last_request_duration"]
+    })
 
 
 @app.route("/api/v1/health")

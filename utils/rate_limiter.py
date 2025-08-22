@@ -1,6 +1,6 @@
 import time
 from collections import defaultdict
-from flask import request, jsonify, g
+from flask import request, jsonify
 
 
 class RateLimiter:
@@ -23,6 +23,7 @@ class RateLimiter:
             A decorator to apply rate limiting to a Flask route.
             Returns a wrapped function that applies rate limiting.
     """
+
     def __init__(self, limit: int = 10, period: int = 60):
         self.limit = limit
         self.period = period

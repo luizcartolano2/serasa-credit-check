@@ -6,7 +6,10 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MOCK_URL=http://mock-serasa:3006
+      - MOCK_URL=http://localhost:3006
+      - SERASA_AUTH_TOKEN=dXNlcm5hbWU6cGFzc3dvcmQ=
+      - SERASA_CACHE_TTL=300
+
     depends_on:
       - mock-serasa
 

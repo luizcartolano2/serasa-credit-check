@@ -9,6 +9,7 @@ def track_metrics(func):
     :param func: a callable function that represents a Flask route
     :return: a wrapped function that tracks the request duration
     """
+
     @wraps(func)
     def wrapper(*args, **kwargs):
         start = time.time()
@@ -16,4 +17,5 @@ def track_metrics(func):
         duration = time.time() - start
         g.request_duration = duration
         return result
+
     return wrapper

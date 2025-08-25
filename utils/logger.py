@@ -2,7 +2,7 @@ import logging
 import sys
 import json
 import uuid
-from flask import g, request
+from flask import g, request, has_request_context
 
 
 class JsonFormatter(logging.Formatter):
@@ -17,6 +17,7 @@ class JsonFormatter(logging.Formatter):
         format(record):
             Formats the log record as a JSON string.
     """
+
     def format(self, record: logging.LogRecord) -> str:
         """
         Formats the log record as a JSON string.
@@ -27,7 +28,7 @@ class JsonFormatter(logging.Formatter):
             "level": record.levelname,
             "time": self.formatTime(record, self.datefmt),
             "message": record.getMessage(),
-            "correlation_id": getattr(g, "correlation_id", None),
+            "correlation_id": getattr(g, "correlation_id", None) if has_request_context() else None,
         }
         return json.dumps(log_record)
 

@@ -5,12 +5,7 @@ from utils.logger import logger
 
 def log_validation(doc_type: str, value: str, valid: bool):
     masked = "****" + value[-4:] if len(value) > 4 else value
-    logger.info({
-        "event": "validate_document",
-        "type": doc_type,
-        "input": masked,
-        "valid": valid
-    })
+    logger.info({"event": "validate_document", "type": doc_type, "input": masked, "valid": valid})
 
 
 def only_digits(value: str) -> str:

@@ -59,11 +59,7 @@ class SerasaService:
         self.token_cache["token"] = token
         self.token_cache["expires_at"] = time.time() + expires_in - 5
 
-        logger.info({
-            "event": "auth_success",
-            "token_set": True,
-            "expires_at": self.token_cache["expires_at"]
-        })
+        logger.info({"event": "auth_success", "token_set": True, "expires_at": self.token_cache["expires_at"]})
 
         return token
 
@@ -87,11 +83,7 @@ class SerasaService:
             headers["Authorization"] = f"Bearer {token}"
             resp = requests.get(url, headers=headers)
 
-        logger.info({
-            "event": "request_end",
-            "document_id": document_id,
-            "status_code": resp.status_code
-        })
+        logger.info({"event": "request_end", "document_id": document_id, "status_code": resp.status_code})
 
         return resp
 

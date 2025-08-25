@@ -133,10 +133,7 @@ def metrics() -> Response:
               description: Duration of the last request in seconds
     """
     uptime = time.time() - app.config.get("START_TIME", time.time())
-    return jsonify({
-        "uptime": uptime,
-        "last_request_duration": metrics_data["last_request_duration"]
-    })
+    return jsonify({"uptime": uptime, "last_request_duration": metrics_data["last_request_duration"]})
 
 
 @app.route("/api/v1/health")
